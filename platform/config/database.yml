@@ -19,14 +19,17 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
+  database: platdb
   username: db_access
   password: rails_db!
 
 
 development:
   <<: *default
-  database: platform_development
-
+  database: platdb
+  host: localhost
+  username: db_access
+  password: rails_db!
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
@@ -85,8 +88,12 @@ production:
   primary: &primary_production
     <<: *default
     database: platform_production
-    username: platform
-    password: <%= ENV["PLATFORM_DATABASE_PASSWORD"] %>
+    #username: platform
+    #password: <%= ENV["PLATFORM_DATABASE_PASSWORD"] %>
+    host: localhost
+    database: platdb
+    username: db_access
+    password: rails_db!
   cache:
     <<: *primary_production
     database: platform_production_cache
