@@ -7,4 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-User.find_or_create_by!(name: "Sponsor", organization: "UMBC", contact: "fake@email.com", domains: ["AI","Web Development"], role: "sponsor", password: "test")
+user = User.find_or_initialize_by(username: "sponsor")
+user.assign_attributes(name: "Sponsor", organization: "UMBC", contact: "fake@email.com", domains: ["AI","Web Development"], role: "Sponsor", password: "test", password_confirmation: "test")
+user.save!

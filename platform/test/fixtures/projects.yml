@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  short_desc: MyString
+  long_desc: MyString
+  status: MyString
+  owner: 1
+  expiration: 2025-10-01 13:34:16
+  domains: MyString
+
+two:
+  name: MyString
+  short_desc: MyString
+  long_desc: MyString
+  status: MyString
+  owner: 1
+  expiration: 2025-10-01 13:34:16
+  domains: MyString
