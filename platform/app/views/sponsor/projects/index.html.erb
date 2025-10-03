@@ -1,0 +1,27 @@
+<%= search_form_for(@q, url: sponsor_projects_path) do |form| %>
+  <%= form.label :name_cont %>
+  <%= form.text_field :name_cont %>
+  <%= form.submit "Search Projects", class: "submit_button" %>
+<% end %>
+<%= button_to "New Project", sponsor_projects_new_path, method: :get%>
+<div class="fl-table">
+<table class="fl-table">
+  <thead>  
+  <tr>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= link_to project.name, sponsor_projects_show_path(project) %></td>
+      <td><%= project.short_desc %></td>
+      <td><%= project.status %></td>
+      <td><%# link_to "Edit", sponsor_projects_edit_path, class: "action_button"%></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

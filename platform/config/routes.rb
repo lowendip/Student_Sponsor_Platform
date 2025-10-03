@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   
   namespace :sponsor do
     resources :projects
+    get "projects/new", to: "projects#new", as: "projects_new"
+    get "projects/:id", to: "projects#show", as: "projects_show"
+    post "projects/update", to: "projects#update", as: "projects_update"
+    post "projects/create", to: "projects#create", as: "projects_create"
+    #get "projects", to: "projects#index", as: "projects"
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

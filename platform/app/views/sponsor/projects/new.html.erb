@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
- <form>
-  <label for="pname">Project Name:</label><br>
-  <input type="text" id="pname" name="pname"><br>
-  <label for="organization">Organization:</label><br>
-  <input type="text" id="organization" name="organization"><br>
-  <label for="sdesc">Short Description:</label><br>
-  <input type="text" id="sdesc" name="sdesc"><br>
-  <label for="ldesc">Long Description:</label><br>
-  <input type="text" id="ldesc" name="ldesc"><br>
-  <input type="submit" value="Submit">
-</form>
-</body>
-</html>
+<%= form_with model: @project, url:sponsor_projects_create_path do |form| %>
+  <div>
+  <%= form.label "Project Name", class: "form_label" %>
+  <%= form.text_field :name, class: "form_text" %>
+  <br>
+  <%= form.label "Short Description", class: "form_label" %>
+  <%= form.text_field :short_desc, class: "form_text" %>
+  <br>
+  <%= form.label "Long Description", class: "form_label" %>
+  <%= form.text_field :long_desc, class: "form_text" %>
+  <br>
+  <%= form.submit "Create Project", {class:"submit_button"} %>
+  </div>
+<% end %>
