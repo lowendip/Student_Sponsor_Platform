@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
-  resources :sessions
   get "sessions/new"
   get "sessions/create"
-  get "sessions/destroy"
-  
+  delete "sign_out", to: "sessions#delete", as: "sessions_delete"
+  resources :sessions
+
+  get "sponsor_projects", to: "sponsor_projects#index", as: "sponsor_projects"
+  get "sponsor_projects/:id", to: "sponsor_projects#show", as: "sponsor_projects_show"
+
   namespace :sponsor do
-    resources :projects
-    get "projects/new", to: "projects#new", as: "projects_new"
-    get "projects/:id", to: "projects#show", as: "projects_show"
-    post "projects/update", to: "projects#update", as: "projects_update"
-    post "projects/create", to: "projects#create", as: "projects_create"
+    #resources :projects
+    get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
+    get "dashboard", to: "dashboard#index", as: "dashboard"
+    get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
+    patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
+    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    post "dashboard/create", to: "dashboard#create", as: "dashboard_create"
+    post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
+    post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
+    post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
     #get "projects", to: "projects#index", as: "projects"
   end
 

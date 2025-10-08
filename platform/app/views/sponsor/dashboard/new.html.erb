@@ -1,0 +1,14 @@
+<%= form_with model: @project, url:sponsor_dashboard_create_path do |form| %>
+  <div>
+  <%= form.label "Project Name", class: "form_label" %>
+  <%= form.text_field :name, class: "form_text" %>
+  <br>
+  <%= form.label "Short Description", class: "form_label" %>
+  <%= form.text_field :short_desc, class: "form_text" %>
+  <br>
+  <%= form.label "Long Description", class: "form_label" %>
+  <%= form.text_field :long_desc, class: "form_text" %>
+  <br>
+  <%= form.submit "Create Project", {class:"submit_button"} %>
+  </div>
+<% end %>

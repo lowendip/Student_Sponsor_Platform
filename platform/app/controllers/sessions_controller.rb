@@ -13,12 +13,12 @@ session[:user_id] = user.id
 redirect_to root_path, notice: "Logged in successfully"
 else
 flash.now[:alert] = "Invalid username or password"
-render :new
+render redirect_to root_path
 end
   end
 
-  def destroy
-    @current_user = nil
+  def delete
+    current_user = nil
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged out successfully"
   end

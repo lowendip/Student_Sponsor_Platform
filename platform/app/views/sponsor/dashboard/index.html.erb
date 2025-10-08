@@ -1,0 +1,40 @@
+<%= search_form_for(@q, url: sponsor_dashboard_path) do |form| %>
+  <%= form.label :name_cont %>
+  <%= form.text_field :name_cont %>
+  <%= form.submit "Search Projects", class: "btn btn-primary" %>
+<% end %>
+<%= button_to "New Project", sponsor_dashboard_new_path, class:"btn btn-primary", method: :get%>
+<div class="fl-table">
+<table class="fl-table">
+  <thead>  
+  <tr>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th>Status</th>
+    <th>Expiration Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= link_to project.name, sponsor_dashboard_show_path(project) %></td>
+      <td><%= project.short_desc %></td>
+      <td><%= project.status %></td>
+      <td><%= project.expiration %></td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Edit", sponsor_dashboard_edit_path(project.id), class: "btn btn-primary", method: :get%>
+          <% if project.status == "Visible" %>
+            <%= button_to "Hide", sponsor_dashboard_hide_path(project.id), class: "btn btn-primary", method: :post%>
+          <% elsif project.status == "Hidden" %>
+            <%= button_to "Unhide", sponsor_dashboard_unhide_path(project.id), class: "btn btn-primary", method: :post%>
+          <% end %>
+          <%= button_to "Renew", sponsor_dashboard_renew_path(project.id), class: "btn btn-primary", method: :post%>
+          <%= button_to "Delete", sponsor_dashboard_delete_path(project.id), class: "btn btn-danger", method: :delete%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
