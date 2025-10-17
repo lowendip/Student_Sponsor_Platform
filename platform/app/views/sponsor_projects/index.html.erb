@@ -1,6 +1,10 @@
 <%= search_form_for(@q, url: sponsor_projects_path) do |form| %>
-  <%= form.label :name_cont %>
-  <%= form.text_field :name_cont %>
+  <%= form.label :name_cont %><br>
+  <%= form.text_field :name_cont %><br>
+  <%= form.label :domain %>
+  <div style="width:40rem">
+    <%= form.collection_select :domains_id_in, @domains, :id, :name, {}, {id: "collection-select", multiple: true, data: { controller: "choices" }} %>
+  </div>
   <%= form.submit "Search Projects", class: "btn btn-primary" %>
 <% end %>
 <div class="fl-table">

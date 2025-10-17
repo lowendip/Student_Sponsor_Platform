@@ -17,7 +17,15 @@ module Sponsor
     end
 
     def create
+      #Creates the new project including the current user and an expiration date that is 2 years from now
       @project = Project.new(project_params.merge(user: current_user, expiration: DateTime.now.next_year(2).to_time))
+      #Adds the domains to the project (the domains are foreign keys used for searching)
+      params["project"]["domains"].each do |domain|
+        if domain!=""
+          @project.domains << Domain.find(domain.to_i)
+        end
+      end
+      #Saves the project if possible
       if @project.save
         flash[:notice] = "Project Created"
         redirect_to sponsor_dashboard_url
@@ -97,7 +105,7 @@ module Sponsor
     end
 
     def project_params
-      params.require(:project).permit(:name, :short_desc, :long_desc)
+      params.require(:project).permit(:name, :short_desc, :long_desc, :domains)
     end
   end
 end

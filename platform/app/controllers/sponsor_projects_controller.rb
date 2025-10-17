@@ -2,9 +2,10 @@ class SponsorProjectsController < ApplicationController
     def index
       params[:q] = {} if params[:q].blank?
       @q = Project.where(status:"Visible").order(updated_at: :desc).ransack(params[:q])
-      #@projects = Project.all
       @projects = @q.result
       @q_name_cont = params[:q][:name_cont]
+      @q_domains_id_in = params[:q][:domains_id_in]
+      @domains = Domain.all
     end
     
     def show

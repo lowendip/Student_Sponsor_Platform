@@ -4,9 +4,9 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.string :name, default: ""
       t.string :organization, default: ""
       t.string :contact, default: ""
-      t.string :domains, array: true, default: []
       t.string :role, default: ""
       t.string :username
+      t.string :email
       t.string :password_digest
       t.timestamps
     end

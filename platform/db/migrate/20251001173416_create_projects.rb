@@ -7,7 +7,6 @@ class CreateProjects < ActiveRecord::Migration[8.0]
       t.string :status, default: "Visible"
       t.belongs_to :user, index: true, foreign_key: true
       t.datetime :expiration
-      t.string :domains, array: true, default: []
 
       t.timestamps
     end

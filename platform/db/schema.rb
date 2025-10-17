@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_173416) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_15_164305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "domains", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_domains_on_project_id"
+  end
+
+  create_table "domains_projects", id: false, force: :cascade do |t|
+    t.bigint "domain_id", null: false
+    t.bigint "project_id", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -21,7 +35,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_173416) do
     t.string "status", default: "Visible"
     t.bigint "user_id"
     t.datetime "expiration"
-    t.string "domains", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -31,13 +44,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_173416) do
     t.string "name", default: ""
     t.string "organization", default: ""
     t.string "contact", default: ""
-    t.string "domains", default: [], array: true
     t.string "role", default: ""
     t.string "username"
+    t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
   end
 
+  add_foreign_key "domains", "projects"
   add_foreign_key "projects", "users"
 end

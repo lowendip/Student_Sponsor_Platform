@@ -1,0 +1,22 @@
+<%= form_with model: @user, url:users_create_path do |form| %>
+  <% if params[:user] == "sponsor" %>
+    <%= render partial: "new_sponsor", locals: {form: form} %>
+  <% elsif params[:user] == "student" %>
+    <%= render partial: "new_student", locals: {form: form} %>
+  <% end %>
+  <div>
+    <%= form.label "Name", class: "form_label" %><br>
+    <%= form.text_field :name, class: "form_text" %><br>
+    <%= form.label "Username", class: "form_label" %><br>
+    <%= form.text_field :username, class: "form_text" %><br>
+    <%= form.label "Email", class: "form_label" %><br>
+    <%= form.text_field :email, class: "form_text" %><br>
+    <%= form.label "Contact Information (This will be publicly avaiable)", class: "form_label" %><br>
+    <%= form.text_field :contact, class: "form_text" %><br>
+    <%= form.label "Password", class: "form_label" %><br>
+    <%= form.text_field :password, class: "form_text" %><br>
+    <%= form.label "Password Confirmation", class: "form_label" %><br>
+    <%= form.text_field :password_confirmation, class: "form_text" %><br>
+    <%= form.submit "Create Project", {class:"submit_button"} %>
+  </div>
+<% end %>

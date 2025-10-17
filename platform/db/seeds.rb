@@ -8,5 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 user = User.find_or_initialize_by(username: "sponsor")
-user.assign_attributes(name: "Sponsor", organization: "UMBC", contact: "fake@email.com", domains: ["AI","Web Development"], role: "Sponsor", password: "test", password_confirmation: "test")
+user.assign_attributes(name: "Sponsor", organization: "UMBC", contact: "fake@email.com", role: "Sponsor", password: "test", password_confirmation: "test", email_confirmed: true)
 user.save!
+domain = Domain.new(name:"AI")
+domain.save!

@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
+  get "sign_in", to: "sessions#new", as: "sign_in"
+  get "sign_up", to: "users#new", as: "sign_up", constraints: { user: /^(sponsor|student)$/ }
+  #get "sessions/create"
   delete "sign_out", to: "sessions#delete", as: "sessions_delete"
   resources :sessions
 
   get "sponsor_projects", to: "sponsor_projects#index", as: "sponsor_projects"
   get "sponsor_projects/:id", to: "sponsor_projects#show", as: "sponsor_projects_show"
+
+  post "users/create", to: "users#create", as: "users_create"
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
 
   namespace :sponsor do
     #resources :projects
