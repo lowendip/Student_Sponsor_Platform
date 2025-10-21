@@ -1,0 +1,41 @@
+<%= search_form_for(@q, url: admin_dashboard_path) do |form| %>
+  <%= form.label :name_cont %>
+  <%= form.text_field :name_cont %>
+  <%= form.submit "Search Projects", class: "btn btn-primary" %>
+<% end %>
+<div class="fl-table">
+<table class="fl-table">
+  <thead>  
+  <tr>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th>Status</th>
+    <th>Expiration Date</th>
+    <th>Project Owner</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= link_to project.name, admin_dashboard_show_path(project) %></td>
+      <td><%= project.short_desc %></td>
+      <td><%= project.status %></td>
+      <td><%= project.expiration %></td>
+      <td><%= project.user.username %> (<%=project.user.role%>)</td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Edit", admin_dashboard_edit_path(project.id), class: "btn btn-primary", method: :get%>
+          <% if project.status == "Visible" %>
+            <%= button_to "Hide", admin_dashboard_hide_path(project.id), class: "btn btn-primary", method: :post%>
+          <% elsif project.status == "Hidden" %>
+            <%= button_to "Unhide", admin_dashboard_unhide_path(project.id), class: "btn btn-primary", method: :post%>
+          <% end %>
+          <%= button_to "Renew", admin_dashboard_renew_path(project.id), class: "btn btn-primary", method: :post%>
+          <%= button_to "Delete", admin_dashboard_delete_path(project.id), class: "btn btn-danger", method: :delete%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

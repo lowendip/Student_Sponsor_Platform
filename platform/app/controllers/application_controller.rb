@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     ensure_role "Sponsor"
   end
 
+  def ensure_admin!
+    ensure_role "Admin"
+  end
+
   private
 
   def current_user

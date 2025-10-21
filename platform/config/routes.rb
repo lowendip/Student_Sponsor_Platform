@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   end
 
   namespace :sponsor do
-    #resources :projects
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"
@@ -27,7 +26,17 @@ Rails.application.routes.draw do
     post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
     post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
     post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
-    #get "projects", to: "projects#index", as: "projects"
+  end
+
+   namespace :admin do
+    get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
+    get "dashboard", to: "dashboard#index", as: "dashboard"
+    get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
+    patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
+    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
+    post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
+    post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

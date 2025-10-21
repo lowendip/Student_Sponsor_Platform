@@ -5,6 +5,8 @@
         <li class="nav-item">
           <% if current_user && current_user.role == "Sponsor" %>
             <a class="nav-link" href="<%= sponsor_dashboard_url %>">Dashboard</a>
+          <% elsif current_user && current_user.role == "Admin" %>
+            <a class="nav-link" href="<%= admin_dashboard_url %>">Dashboard</a>
           <% end %>
         </li>
         <li class="nav-item">

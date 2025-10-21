@@ -7,22 +7,21 @@
   </div>
   <%= form.submit "Search Projects", class: "btn btn-primary" %>
 <% end %>
-<div class="fl-table">
 <table class="fl-table">
   <thead>  
-  <tr>
-    <th>Project Name</th>
-    <th>Organization</th>
-    <th>Project Description</th>
-  </tr>
+    <tr>
+      <th>Project Name</th>
+      <th>Organization</th>
+      <th>Project Description</th>
+    </tr>
   </thead>
   <tbody>
-  <% @projects.each do |project| %> 
-    <tr>
-      <td><%= link_to project.name, sponsor_projects_show_path(project) %></td>
-      <td><%= project.user.organization %></td>
-      <td><%= project.short_desc %></td>
-    </tr>
-  <% end %>
-</tbody>
+    <% @projects.each do |project| %> 
+      <tr>
+        <td><%= link_to project.name, sponsor_projects_show_path(project) %></td>
+        <td><%= project.user.organization %></td>
+        <td><%= project.short_desc %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
