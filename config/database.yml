@@ -87,13 +87,12 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: platform_production
-    #username: platform
-    #password: <%= ENV["PLATFORM_DATABASE_PASSWORD"] %>
-    host: localhost
-    database: platdb
-    username: db_access
-    password: rails_db!
+    url: <%= ENV['DATABASE_URL'] %>
+    #database: platform_production
+    #host: localhost
+    #database: platdb
+    #username: db_access
+    #password: rails_db!
   cache:
     <<: *primary_production
     database: platform_production_cache
