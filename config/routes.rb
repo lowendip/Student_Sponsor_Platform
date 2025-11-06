@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   get "sponsor_projects", to: "sponsor_projects#index", as: "sponsor_projects"
   get "sponsor_projects/:id", to: "sponsor_projects#show", as: "sponsor_projects_show"
+  get "student_projects", to: "student_projects#index", as: "student_projects"
+  get "student_projects/:id", to: "student_projects#show", as: "student_projects_show"
+
+  get "students", to: "students#index", as: "students"
+  get "sponsors", to: "sponsors#index", as: "sponsors"
+
 
   post "users/create", to: "users#create", as: "users_create"
   resources :users do
@@ -16,6 +22,19 @@ Rails.application.routes.draw do
   end
 
   namespace :sponsor do
+    get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
+    get "dashboard", to: "dashboard#index", as: "dashboard"
+    get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
+    patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
+    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    post "dashboard/create", to: "dashboard#create", as: "dashboard_create"
+    post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
+    post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
+    post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
+  end
+
+  namespace :student do
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"

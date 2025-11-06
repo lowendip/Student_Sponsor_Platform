@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_15_164305) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_05_203305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_15_164305) do
   create_table "domains_projects", id: false, force: :cascade do |t|
     t.bigint "domain_id", null: false
     t.bigint "project_id", null: false
+  end
+
+  create_table "domains_users", id: false, force: :cascade do |t|
+    t.bigint "domain_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "projects", force: :cascade do |t|

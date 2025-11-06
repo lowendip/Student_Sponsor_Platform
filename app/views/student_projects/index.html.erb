@@ -1,0 +1,27 @@
+<%= search_form_for(@q, url: student_projects_path) do |form| %>
+  <%= form.label :project_name_cont %><br>
+  <%= form.text_field :name_cont %><br>
+  <%= form.label :domain %>
+  <div style="width:40rem">
+    <%= form.collection_select :domains_id_in, @domains, :id, :name, {}, {id: "collection-select", multiple: true, data: { controller: "choices" }} %>
+  </div>
+  <%= form.submit "Search Projects", class: "btn btn-primary" %>
+<% end %>
+<table class="fl-table">
+  <thead>  
+    <tr>
+      <th>Project Name</th>
+      <th>Student Name</th>
+      <th>Project Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %> 
+      <tr>
+        <td><%= link_to project.name, student_projects_show_path(project) %></td>
+        <td><%= project.user.name %></td>
+        <td><%= project.short_desc %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

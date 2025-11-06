@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     ensure_role "Admin"
   end
 
+  def ensure_student!
+    ensure_role "Student"
+  end
+
   private
 
   def current_user

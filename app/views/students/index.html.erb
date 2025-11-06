@@ -1,0 +1,27 @@
+<%= search_form_for(@q, url: students_path) do |form| %>
+  <%= form.label :name_cont %><br>
+  <%= form.text_field :name_cont %><br>
+  <%= form.label :domain %>
+  <div style="width:40rem">
+    <%= form.collection_select :domains_id_in, @domains, :id, :name, {}, {id: "collection-select", multiple: true, data: { controller: "choices" }} %>
+  </div>
+  <%= form.submit "Search Users", class: "btn btn-primary" %>
+<% end %>
+<table class="fl-table">
+  <thead>  
+    <tr>
+      <th>Student Name</th>
+      <th>Domains of Interest</th>
+      <th>Contact Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %> 
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.domains.pluck(:name) %></td>
+        <td><%= user.contact %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
