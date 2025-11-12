@@ -1,0 +1,44 @@
+<%= search_form_for(@q, url: admin_users_path) do |form| %>
+  <%= form.label :name_cont %>
+  <%= form.text_field :name_cont %>
+  <%= form.label :username_cont %>
+  <%= form.text_field :username_cont %>
+  <%= form.label :role %>
+  <%= form.select :role_eq, ['Sponsor', 'Student'], {include_blank: 'Any'} %>
+  <%= form.submit "Search Users", class: "btn btn-primary" %>
+<% end %>
+<div class="fl-table">
+<table class="fl-table">
+  <thead>  
+  <tr>
+    <th>User's Name</th>
+    <th>Username</th>
+    <th>Organization</th>
+    <th>Status</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.username %></td>
+      <td><%= user.organization %></td>
+      <td><%= user.status %></td>
+      <td><%= user.role %></td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Edit", admin_users_edit_path(user.id), class: "btn btn-primary", method: :get%>
+          <% if user.status == "Disabled" %>
+            <%= button_to "Reactivate", admin_users_reactivate_path(user.id), class: "btn btn-primary", method: :post%>
+          <% else %>
+            <%= button_to "Disable", admin_users_disable_path(user.id), class: "btn btn-primary", method: :post%>
+          <% end %>
+          <%= button_to "Delete", admin_users_delete_path(user.id), class: "btn btn-danger", method: :delete%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

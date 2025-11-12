@@ -1,0 +1,28 @@
+<%= search_form_for(@q, url: admin_domains_path) do |form| %>
+  <%= form.label :name_cont %>
+  <%= form.text_field :name_cont %>
+  <%= form.submit "Search Domains", class: "btn btn-primary" %>
+<% end %>
+<%= button_to "New Domain", admin_domains_new_path, class:"btn btn-primary", method: :get%>
+<div class="fl-table">
+<table class="fl-table">
+  <thead>  
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @domains.each do |domain| %>
+    <tr>
+      <td><%= domain.name %></td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Edit", admin_domains_edit_path(domain.id), class: "btn btn-primary", method: :get%>
+          <%= button_to "Delete", admin_domains_delete_path(domain.id), class: "btn btn-danger", method: :delete%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

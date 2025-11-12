@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge(status:"Active"))
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
       redirect_to sign_in_path, notice: "You have been sent a confirmation email"

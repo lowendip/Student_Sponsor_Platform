@@ -1,6 +1,10 @@
 <%= search_form_for(@q, url: admin_dashboard_path) do |form| %>
-  <%= form.label :name_cont %>
+  <%= form.label :project_name_cont %>
   <%= form.text_field :name_cont %>
+  <%= form.label :owner_cont %>
+  <%= form.text_field :user_name_cont %>
+  <%= form.label :user_role %>
+  <%= form.select :user_role_eq, ['Sponsor', 'Student'], {include_blank: 'Any'} %>
   <%= form.submit "Search Projects", class: "btn btn-primary" %>
 <% end %>
 <div class="fl-table">
@@ -20,7 +24,11 @@
     <tr>
       <td><%= link_to project.name, admin_dashboard_show_path(project) %></td>
       <td><%= project.short_desc %></td>
-      <td><%= project.status %></td>
+      <td><% if project.user.status == "Active" %>
+            <%= project.status %></td>
+          <% else %>
+            <%= "Account Disabled- Hidden" %>
+          <% end %>
       <td><%= project.expiration %></td>
       <td><%= project.user.username %> (<%=project.user.role%>)</td>
       <td>

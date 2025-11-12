@@ -4,9 +4,11 @@ module Admin
     
     def index
       params[:q] = {} if params[:q].blank?
-      @q = Project.all.order(created_at: :desc).ransack(params[:q])
+      @q = Project.all.joins(:user).order(created_at: :desc).ransack(params[:q])
       @projects = @q.result
       @q_name_cont = params[:q][:name_cont]
+      @q_user_name_cont = params[:q][:user_name_cont]
+      @q_user_role_eq = params[:q][:user_role_eq]
     end
     
     def show

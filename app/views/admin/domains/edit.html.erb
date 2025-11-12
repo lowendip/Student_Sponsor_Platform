@@ -1,0 +1,8 @@
+<%= form_with model: @domain, url:admin_domains_update_path do |form| %>
+  <div>
+    <%= form.label "Name", class: "form_label" %>
+    <%= form.text_field :name, class: "form_text" %>
+    <br>
+    <%= form.submit "Update Domain", {class:"submit_button"} %>
+  </div>
+<% end %>

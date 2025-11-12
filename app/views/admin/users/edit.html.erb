@@ -1,0 +1,14 @@
+<%= form_with model: @user, url:admin_users_update_path do |form| %>
+  <div>
+  <%= form.label "User's Name", class: "form_label" %>
+  <%= form.text_field :name, class: "form_text" %>
+  <br>
+  <%= form.label "Username", class: "form_label" %>
+  <%= form.text_field :username, class: "form_text" %>
+  <br>
+  <%= form.label "Organization", class: "form_label" %>
+  <%= form.text_field :organization, class: "form_text" %>
+  <br>
+  <%= form.submit "Update User", {class:"submit_button"} %>
+  </div>
+<% end %>

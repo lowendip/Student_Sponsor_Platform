@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   before_create :confirmation_token
   has_and_belongs_to_many :domains
+  has_many :projects, dependent: :delete_all
 
   def email_activate
     self.email_confirmed = true
@@ -10,7 +11,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name","organization"]
+    ["name","organization","role","username"]
   end
 
 

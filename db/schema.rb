@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_05_203305) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_204345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_05_203305) do
     t.datetime "updated_at", null: false
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
+    t.string "status"
   end
 
   add_foreign_key "domains", "projects"

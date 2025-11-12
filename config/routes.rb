@@ -56,6 +56,20 @@ Rails.application.routes.draw do
     post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
     post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
     post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
+
+    get "users", to: "users#index", as: "users"
+    get "users/:id/edit", to: "users#edit", as: "users_edit"
+    patch "users/:id/update", to: "users#update", as: "users_update"
+    delete "users/:id/delete", to: "users#delete", as: "users_delete"
+    post "users/:id/disable", to: "users#disable", as: "users_disable"
+    post "users/:id/reactivate", to: "users#reactivate", as: "users_reactivate"
+
+    get "domains", to: "domains#index", as: "domains"
+    get "domains/:id/edit", to: "domains#edit", as: "domains_edit"
+    patch "domains/:id/update", to: "domains#update", as: "domains_update"
+    delete "domains/:id/delete", to: "domains#delete", as: "domains_delete"
+    get "domains/new", to: "domains#new", as: "domains_new"
+    post "domains/create", to: "domains#create", as: "domains_create"
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

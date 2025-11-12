@@ -1,7 +1,7 @@
 class StudentProjectsController < ApplicationController 
     def index
       params[:q] = {} if params[:q].blank?
-      @q = Project.where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).ransack(params[:q])
+      @q = Project.belongs_to_student.active_projects.where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).ransack(params[:q])
       @projects = @q.result
       @q_name_cont = params[:q][:name_cont]
       @q_domains_id_in = params[:q][:domains_id_in]

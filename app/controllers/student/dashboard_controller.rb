@@ -28,7 +28,7 @@ module Student
       #Saves the project if possible
       if @project.save
         flash[:notice] = "Project Created"
-        redirect_to sponsor_dashboard_url
+        redirect_to student_dashboard_url
       else
         flash[:alert] = "Failed to Save"
         redirect_to root_path
@@ -41,7 +41,7 @@ module Student
     def update
       if @project.update(project_params)
         flash[:notice] = "Project Updated"
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
       else
         flash[:alert] = "Failed to Update Project"
         redirect_to root_path
@@ -51,7 +51,7 @@ module Student
     def delete
       if @project.delete
         flash[:notice] = "Project Deleted"
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
       else
         flash[:alert] = "Failed to Delete Project"
         redirect_to root_path
@@ -61,10 +61,10 @@ module Student
     def hide
       @project.update(status: "Hidden")
       if @project.save
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Project Hidden"
       else
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Failed To Hide"
       end
     end
@@ -72,10 +72,10 @@ module Student
     def unhide
       @project.update(status: "Visible")
       if @project.save
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Project Visible"
       else
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Failed To Make Visible"
       end
     end
@@ -86,10 +86,10 @@ module Student
       end
       @project.update(expiration: DateTime.now.next_year(2).to_time)
       if @project.save
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Project Renewed"
       else
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
         flash[:notice] = "Failed To Renew"
       end
     end
@@ -100,7 +100,7 @@ module Student
       @project = Project.find_by(id: params[:id], user: current_user)
       if !@project
         flash[:alert] = "Cannot find project"
-        redirect_to sponsor_dashboard_path
+        redirect_to student_dashboard_path
       end
     end
 
