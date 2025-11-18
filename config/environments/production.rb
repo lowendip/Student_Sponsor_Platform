@@ -74,10 +74,7 @@ Rails.application.configure do
   address: ENV['MAILGUN_SMTP_SERVER'],
   user_name: ENV['MAILGUN_SMTP_LOGIN'],
   password: ENV['MAILGUN_SMTP_PASSWORD'],
-  domain: 'student-sponsor-platform.heroku.com',
-  authentication: :plain
   }
-
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
