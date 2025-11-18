@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get "sign_in", to: "sessions#new", as: "sign_in"
   get "sign_up", to: "users#new", as: "sign_up", constraints: { user: /^(sponsor|student)$/ }
-  #get "sessions/create"
   delete "sign_out", to: "sessions#delete", as: "sessions_delete"
   resources :sessions
 

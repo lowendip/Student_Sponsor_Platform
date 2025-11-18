@@ -2,6 +2,9 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= root_url %>">Home</a>
+        </li>
         <% if current_user && current_user.role == "Sponsor" %>
           <li class="nav-item">
             <a class="nav-link" href="<%= sponsor_dashboard_url %>">Dashboard</a>

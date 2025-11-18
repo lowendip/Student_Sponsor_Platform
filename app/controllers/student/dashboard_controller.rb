@@ -30,8 +30,7 @@ module Student
         flash[:notice] = "Project Created"
         redirect_to student_dashboard_url
       else
-        flash[:alert] = "Failed to Save"
-        redirect_to root_path
+        render :new, status: :unprocessable_entity
       end
     end
 

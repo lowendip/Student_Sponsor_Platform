@@ -6,17 +6,23 @@
   <% end %>
   <div>
     <%= form.label "Name", class: "form_label" %><br>
-    <%= form.text_field :name, class: "form_text" %><br>
+    <%= form.text_field :name, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:name]} %><br>
     <%= form.label "Username", class: "form_label" %><br>
-    <%= form.text_field :username, class: "form_text" %><br>
+    <%= form.text_field :username, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:username]} %><br>
     <%= form.label "Email", class: "form_label" %><br>
-    <%= form.text_field :email, class: "form_text" %><br>
-    <%= form.label "Contact Information (This will be publicly avaiable)", class: "form_label" %><br>
-    <%= form.text_field :contact, class: "form_text" %><br>
+    <%= form.text_field :email, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:email]} %><br>
+    <%= form.label "Contact Information (This will be publicly available)", class: "form_label" %><br>
+    <%= form.text_field :contact, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:contact]} %><br>
     <%= form.label "Password", class: "form_label" %><br>
-    <%= form.text_field :password, class: "form_text" %><br>
+    <%= form.text_field :password, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password]} %><br>
     <%= form.label "Password Confirmation", class: "form_label" %><br>
-    <%= form.text_field :password_confirmation, class: "form_text" %><br>
+    <%= form.text_field :password_confirmation, class: "form_text" %>
+    <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password_confirmation]} %><br>
     <%= form.submit "Sign Up", {class:"submit_button"} %>
   </div>
 <% end %>

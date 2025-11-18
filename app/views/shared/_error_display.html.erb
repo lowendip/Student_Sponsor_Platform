@@ -1,0 +1,7 @@
+<% if !errors.blank? %>
+  <div class="alert alert-danger" role="alert" style="display: inline-block; max-width:20rem; padding: 4px">
+    <% errors.each do | message | %>
+      <%= message %>
+    <% end %>
+  </div>
+<% end %>

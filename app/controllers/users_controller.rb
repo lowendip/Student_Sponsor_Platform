@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       UserMailer.registration_confirmation(@user).deliver_now
       redirect_to sign_in_path, notice: "You have been sent a confirmation email"
     else
-      redirect_to root_path
+      render :new, status: :unprocessable_entity
     end
   end
 

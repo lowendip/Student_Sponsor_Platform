@@ -1,0 +1,14 @@
+<%= form.label "Project Name", class: "form_label" %><br>
+<%= form.text_field :name, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: project.errors.messages[:name]} %><br>
+<%= form.label "Short Description", class: "form_label" %><br>
+<%= form.text_field :short_desc, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: project.errors.messages[:short_desc]} %><br>
+<%= form.label "Long Description", class: "form_label" %><br>
+<%= form.text_field :long_desc, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: project.errors.messages[:long_desc]} %><br>
+<%= form.label "Domains", class: "form_label" %><br>
+<div style="width:40rem">
+  <%= form.collection_select :domains, Domain.all, :id, :name, {}, {multiple: true, class: "form-select", id: "collection-select", data: { controller: "choices" }} %>
+</div>
+<%= form.submit "Create Project", {class:"submit_button"} %>

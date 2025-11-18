@@ -1,6 +1,9 @@
 class Project < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :domains
+  validates :name, presence: {message: "Project name is missing"}
+  validates :short_desc, presence: {message: "Short description is missing"}, length: {message: "Short description can be at most 40 characters", maximum: 40}
+  validates :long_desc, presence: {message: "Long description is missing"}
 
   def self.belongs_to_student
     Project.joins(:user).where(user: {role: "Student"})
