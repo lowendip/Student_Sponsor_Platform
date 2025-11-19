@@ -74,6 +74,10 @@ Rails.application.configure do
   address: ENV['MAILGUN_SMTP_SERVER'],
   user_name: ENV['MAILGUN_SMTP_LOGIN'],
   password: ENV['MAILGUN_SMTP_PASSWORD'],
+  authentication:  "plain",
+    enable_starttls: true,
+    open_timeout:    5,
+    read_timeout:    5
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
