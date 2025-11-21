@@ -39,11 +39,18 @@ module Student
 
     def update
       if @project.update(project_params)
+        #Adds domains to the project (the domains are foreign keys used for searching) or clears the domains if there are none in params
+      params["project"]["domains"].each do |domain|
+        if domain!=""
+          @project.domains << Domain.find(domain.to_i)
+        else
+          @project.domains.clear
+        end
+      end
         flash[:notice] = "Project Updated"
         redirect_to student_dashboard_path
       else
-        flash[:alert] = "Failed to Update Project"
-        redirect_to root_path
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -93,6 +100,28 @@ module Student
       end
     end
 
+    def edit_profile
+      @user = current_user
+    end
+
+    def update_profile
+      @user = current_user
+      if @user.update(user_params)
+        #Adds domains to the user (the domains are foreign keys used for searching) or clears the domains if there are none in params
+        params["user"]["domains"].each do |domain|
+          if domain!=""
+            @user.domains << Domain.find(domain.to_i)
+          else
+            @user.domains.clear
+          end
+        end
+        flash[:notice] = "Profile Updated"
+        redirect_to student_dashboard_path
+      else
+        render :edit_profile, status: :unprocessable_entity
+      end
+    end
+
     private
     
     def set_project
@@ -105,6 +134,10 @@ module Student
 
     def project_params
       params.require(:project).permit(:name, :short_desc, :long_desc, :domains)
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :username, :contact, :domains)
     end
   end
 end

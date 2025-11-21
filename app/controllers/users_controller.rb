@@ -9,6 +9,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params.merge(status:"Active"))
     if @user.save
+      #Adds domains to the user (the domains are foreign keys used for searching)
+        params["user"]["domains"].each do |domain|
+          if domain!=""
+            @user.domains << Domain.find(domain.to_i)
+          end
+        end
       UserMailer.registration_confirmation(@user).deliver_now
       redirect_to sign_in_path, notice: "You have been sent a confirmation email"
     else

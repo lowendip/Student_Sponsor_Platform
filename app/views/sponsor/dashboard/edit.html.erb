@@ -1,14 +1,10 @@
+<script>
+  document.addEventListener("connect()", function () {
+    const select = document.getElementById("collection-select");
+  });
+</script>
 <%= form_with model: @project, url:sponsor_dashboard_update_path do |form| %>
   <div>
-  <%= form.label "Project Name", class: "form_label" %>
-  <%= form.text_field :name, class: "form_text" %>
-  <br>
-  <%= form.label "Short Description", class: "form_label" %>
-  <%= form.text_field :short_desc, class: "form_text" %>
-  <br>
-  <%= form.label "Long Description", class: "form_label" %>
-  <%= form.text_field :long_desc, class: "form_text" %>
-  <br>
-  <%= form.submit "Update Project", {class:"submit_button"} %>
+    <%= render partial: "shared/edit_project_form", locals: {project: @project, form: form} %><br>
   </div>
 <% end %>

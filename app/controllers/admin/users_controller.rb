@@ -25,7 +25,7 @@ module Admin
     end
 
     def delete
-      if @user.delete
+      if @user.destroy
         flash[:notice] = "User Deleted"
         redirect_to admin_users_path
       else

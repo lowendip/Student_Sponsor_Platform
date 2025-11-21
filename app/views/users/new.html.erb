@@ -23,6 +23,10 @@
     <%= form.label "Password Confirmation", class: "form_label" %><br>
     <%= form.text_field :password_confirmation, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password_confirmation]} %><br>
+    <%= form.label "Domains of Experience/Interest", class: "form_text" %>
+    <div style="width:40rem">
+      <%= form.collection_select :domains, Domain.all, :id, :name, {}, {multiple: true, class: "form-select", id: "collection-select", data: { controller: "choices" }} %>
+    </div>
     <%= form.submit "Sign Up", {class:"submit_button"} %>
   </div>
 <% end %>

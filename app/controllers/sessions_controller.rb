@@ -10,8 +10,12 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       if user.email_confirmed
-        session[:user_id] = user.id
-        redirect_to root_path, notice: "Logged in successfully"
+        if user.status == "Active"
+          session[:user_id] = user.id
+          redirect_to root_path, notice: "Logged in successfully"
+        else
+          redirect_to root_path, notice: "Your account has been disabled and all your projects have been hidden. Please contact an admin if you believe this is a mistake."
+        end
       else
         flash[:alert] = "Please confirm your email"
         redirect_to sign_in_path

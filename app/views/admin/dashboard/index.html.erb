@@ -40,7 +40,7 @@
             <%= button_to "Unhide", admin_dashboard_unhide_path(project.id), class: "btn btn-primary", method: :post%>
           <% end %>
           <%= button_to "Renew", admin_dashboard_renew_path(project.id), class: "btn btn-primary", method: :post%>
-          <%= button_to "Delete", admin_dashboard_delete_path(project.id), class: "btn btn-danger", method: :delete%>
+          <%= button_to "Delete", admin_dashboard_delete_path(project.id), class: "btn btn-danger", method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this project?" }}%>
         </div>
       </td>
     </tr>

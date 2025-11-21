@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   namespace :sponsor do
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/edit_profile", to: "dashboard#edit_profile", as: "dashboard_edit_profile"
+    patch "dashboard/edit_profile", to: "dashboard#update_profile", as: "dashboard_update_profile"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"
     get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
@@ -35,6 +37,8 @@ Rails.application.routes.draw do
 
   namespace :student do
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/edit_profile", to: "dashboard#edit_profile", as: "dashboard_edit_profile"
+    patch "dashboard/edit_profile", to: "dashboard#update_profile", as: "dashboard_update_profile"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"
     get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
