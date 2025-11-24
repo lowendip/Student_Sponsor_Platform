@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "sponsorstudentconfirm@gmail.com"
+  default from: "sponsorstudentsponsorstudentconfirmationemails"
   layout "mailer"
 end
