@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   def new
-    if !(params[:user]=="sponsor"||params[:user]=="student")
-      redirect_to sign_in_path, notice: "Please select which type of user you want to sign up as" 
-    end
+    @user = User.new
+  end
+
+  def new_sponsor
+    @user = User.new
+  end
+
+  def new_student
     @user = User.new
   end
 
@@ -18,7 +23,11 @@ class UsersController < ApplicationController
       UserMailer.registration_confirmation(@user).deliver_now
       redirect_to sign_in_path, notice: "You have been sent a confirmation email"
     else
-      render :new, status: :unprocessable_entity
+      if params["user"]["role"]=="Sponsor"
+        render :new_sponsor, status: :unprocessable_entity
+      elsif params["user"]["role"]=="Student"
+        render :new_student, status: :unprocessable_entity
+      end
     end
   end
 

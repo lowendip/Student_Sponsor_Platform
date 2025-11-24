@@ -18,8 +18,8 @@
       <div class="carousel-caption d-none d-md-block" style="height:17em; padding-top:3em">
         <h1>Sign up</h1>
         <p>Sign up as a student or sponsor to start adding projects</p>
-        <%= link_to "Sign Up As Sponsor", sign_up_path(user: "sponsor"), method: :get, class: "btn btn-primary" %>
-        <%= link_to "Sign Up As Student", sign_up_path(user: "student"), method: :get, class: "btn btn-primary" %>
+        <%= link_to "Sign Up As Sponsor", sign_up_sponsor_path, method: :get, class: "btn btn-primary" %>
+        <%= link_to "Sign Up As Student", sign_up_student_path, method: :get, class: "btn btn-primary" %>
       </div>
     </div>
     <div class="carousel-item" style="height:17em">

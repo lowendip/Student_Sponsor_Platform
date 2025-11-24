@@ -1,10 +1,8 @@
 <%= form_with model: @user, url:users_create_path do |form| %>
-  <% if params[:user] == "sponsor" %>
-    <%= render partial: "new_sponsor", locals: {form: form} %>
-  <% elsif params[:user] == "student" %>
-    <%= render partial: "new_student", locals: {form: form} %>
-  <% end %>
   <div>
+    <%= form.label "Organization", class: "form_label" %><br>
+    <%= form.text_field :organization, class: "form_text" %><br>
+    <%= form.hidden_field :role, value: 'Sponsor'  %>
     <%= form.label "Name", class: "form_label" %><br>
     <%= form.text_field :name, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:name]} %><br>
