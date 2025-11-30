@@ -1,0 +1,20 @@
+<div style="padding:2vw;">
+  <div class="card center" style="padding:1vw; width:100%; display: flex; font-size: 1.5rem">
+    <div style="text-align:center; font-size:3rem"> <%= @project.name %></div><br>
+    <% if @project.domains.present? %>
+      Domains: <%= render "shared/render_domains", model:@project %><br>
+    <% end %>  
+    Contact Info: <%= @project.user.contact %><br>
+    <% if @project.url.present? %>
+      <p style="margin-bottom: 0;">Site Link: <%= link_to @project.url, @project.url %></p><br>
+    <% end %>
+    Description: <%= @project.long_desc %><br>
+    <div>
+      <% if @project.images.attached? %>
+        <% @project.images.each do | image | %>
+         <image src="<%=(url_for(image))%>" style="width:31vw; height:31vw; padding-bottom:5px">
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

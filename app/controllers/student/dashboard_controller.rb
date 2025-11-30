@@ -133,7 +133,7 @@ module Student
     end
 
     def project_params
-      params.require(:project).permit(:name, :short_desc, :long_desc, :domains)
+      params.require(:project).permit(:name, :short_desc, :long_desc, :domains, :url, images:[])
     end
 
     def user_params

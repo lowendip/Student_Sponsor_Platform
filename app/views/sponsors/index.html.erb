@@ -19,7 +19,7 @@
     <% @users.each do |user| %> 
       <tr>
         <td><%= user.organization %></td>
-        <td><%= user.domains.pluck(:name) %></td>
+        <td><%= render "shared/render_domains", model:user %></td>
         <td><%= user.contact %></td>
       </tr>
     <% end %>

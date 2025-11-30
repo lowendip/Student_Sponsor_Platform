@@ -1,0 +1,7 @@
+<% @str = "" %>
+<% model.domains.pluck(:name).each do | domain | %>
+  <% @str = @str + domain + ", " %>
+<% end %>
+<% if @str != "" %>
+  <%= @str[0..-3] %>
+<% end %>

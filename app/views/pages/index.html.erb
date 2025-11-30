@@ -50,3 +50,11 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<br>
+<br>
+<h1 style="text-align:center"> New Projects </h1>
+<div style="display:flex; flex-wrap:wrap; padding:0.5vw">
+    <% @projects.each do | project | %>
+      <%= render "shared/project_card", project:project %>
+    <% end %>
+</div>
