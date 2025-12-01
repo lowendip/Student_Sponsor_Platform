@@ -56,6 +56,11 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'railroady'
+end
+
+group :production do
+  gem "aws-sdk-s3", require: false
 end
 
 group :test do
