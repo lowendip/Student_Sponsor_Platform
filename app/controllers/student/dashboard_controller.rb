@@ -1,6 +1,6 @@
 module Student
   class DashboardController < StudentController
-    before_action :set_project, only: [:show, :edit, :update, :delete, :hide, :unhide, :renew]
+    before_action :set_project, only: [:show, :edit, :update, :destroy, :hide, :unhide, :renew]
     
     def index
       params[:q] = {} if params[:q].blank?
@@ -54,8 +54,8 @@ module Student
       end
     end
 
-    def delete
-      if @project.delete
+    def destroy
+      if @project.destroy
         flash[:notice] = "Project Deleted"
         redirect_to student_dashboard_path
       else

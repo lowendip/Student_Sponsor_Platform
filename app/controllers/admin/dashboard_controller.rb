@@ -1,6 +1,6 @@
 module Admin
   class DashboardController < AdminController
-    before_action :set_project, only: [:show, :edit, :update, :delete, :hide, :unhide, :renew]
+    before_action :set_project, only: [:show, :edit, :update, :destroy, :hide, :unhide, :renew]
     
     def index
       params[:q] = {} if params[:q].blank?
@@ -27,12 +27,12 @@ module Admin
       end
     end
 
-    def delete
-      if @project.delete
-        flash[:notice] = "Project Deleted"
+    def destroy
+      if @project.destroy
+        flash[:notice] = "Project Destroyed"
         redirect_to admin_dashboard_path
       else
-        flash[:alert] = "Failed to Delete Project"
+        flash[:alert] = "Failed to Destroy Project"
         redirect_to root_path
       end
     end

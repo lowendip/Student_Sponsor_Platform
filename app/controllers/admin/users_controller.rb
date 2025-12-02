@@ -1,6 +1,6 @@
 module Admin
   class UsersController < AdminController
-    before_action :set_user, only: [:edit, :update, :delete, :disable, :reactivate]
+    before_action :set_user, only: [:edit, :update, :destroy, :disable, :reactivate]
     
     def index
       params[:q] = {} if params[:q].blank?
@@ -24,9 +24,9 @@ module Admin
       end
     end
 
-    def delete
+    def destroy
       if @user.destroy
-        flash[:notice] = "User Deleted"
+        flash[:notice] = "User Destroyed"
         redirect_to admin_users_path
       else
         flash[:alert] = "Failed to Delete User"

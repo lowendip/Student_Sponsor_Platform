@@ -4,7 +4,7 @@ class Project < ApplicationRecord
   validates :name, presence: {message: "Project name is missing"}
   validates :short_desc, presence: {message: "Short description is missing"}, length: {message: "Short description can be at most 40 characters", maximum: 40}
   validates :long_desc, presence: {message: "Long description is missing"}
-  has_many_attached :images
+  has_many_attached :images, dependent: :delete_all
 
   def self.belongs_to_student
     Project.joins(:user).where(user: {role: "Student"})
