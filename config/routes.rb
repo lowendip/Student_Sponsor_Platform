@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get "students", to: "students#index", as: "students"
   get "sponsors", to: "sponsors#index", as: "sponsors"
+  get "password_reset/new", to: "password_reset#new", as: "password_reset_new"
+  post "password_reset/create", to: "password_reset#create", as: "password_reset_create"
+  get "password_reset/edit", to: "password_reset#edit", as: "password_reset_edit"
+  patch "password_reset/update", to: "password_reset#update", as: "password_reset_update"
 
 
   post "users/create", to: "users#create", as: "users_create"

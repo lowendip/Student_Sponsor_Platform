@@ -32,4 +32,12 @@ class User < ApplicationRecord
     end
   end
 
+  def new_confirmation_token
+    self.confirm_token = SecureRandom.urlsafe_base64.to_s
+  end
+
+  generates_token_for :password_reset, expires_in: 1.hour do
+    password_salt.last(10)
+  end
+
 end
