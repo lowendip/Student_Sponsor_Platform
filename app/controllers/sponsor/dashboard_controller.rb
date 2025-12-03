@@ -38,7 +38,6 @@ module Sponsor
     end
 
     def update
-      #@project.images.attach(project_params[:images])
       if @project.update(project_params)
         #Adds domains to the project (the domains are foreign keys used for searching) or clears the domains if there are none in params
         params["project"]["domains"].each do |domain|
