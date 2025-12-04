@@ -9,7 +9,7 @@
     <%= form.label "Username", class: "form_label" %><br>
     <%= form.text_field :username, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:username]} %><br>
-    <%= form.label "Email", class: "form_label" %><br>
+    <%= form.label "Email (Gmail Only)", class: "form_label" %><br>
     <%= form.text_field :email, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:email]} %><br>
     <%= form.label "Contact Information (This will be publicly available)", class: "form_label" %><br>
