@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: {message: "Username is missing"}, uniqueness: {message: "Username already taken"}
   validates :name, presence: {message: "Name is missing"}
   validates :contact, presence: {message: "Contact information is missing"}
-  validates :password, format: { with: /[^a-zA-Z]/, message: "Password needs at least one non-letter character"}, length: {minimum: 8, message:"Password must be at least 8 characters"}
+  validates :password, format: { with: /[^a-zA-Z]/, message: "Password needs at least one non-letter character"}, length: {minimum: 8, message:"Password must be at least 8 characters"}, on: :create
 
   def email_activate
     self.email_confirmed = true

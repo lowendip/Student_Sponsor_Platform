@@ -15,12 +15,12 @@ module Admin
     end
 
     def update
-      if @user.update(project_params)
+      if @user.update(user_params)
         flash[:notice] = "User Updated"
         redirect_to admin_users_path
       else
         flash[:alert] = "Failed to Update User"
-        redirect_to root_path
+        redirect_to admin_users_path
       end
     end
 
@@ -30,7 +30,7 @@ module Admin
         redirect_to admin_users_path
       else
         flash[:alert] = "Failed to Delete User"
-        redirect_to root_path
+        redirect_to admin_users_path
       end
     end
 
@@ -51,7 +51,7 @@ module Admin
         redirect_to admin_users_path
         flash[:notice] = "User Account Active"
       else
-        redirect_to admin_dashboard_path
+        redirect_to admin_users_path
         flash[:notice] = "Failed To Make User Account Active"
       end
     end
@@ -66,7 +66,7 @@ module Admin
       end
     end
 
-    def project_params
+    def user_params
       params.require(:user).permit(:name, :username, :organization, :status, :role)
     end
   end
