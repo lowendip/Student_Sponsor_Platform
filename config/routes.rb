@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get "sign_in", to: "sessions#new", as: "sign_in"
-  #get "sign_up", to: "users#new", as: "sign_up", constraints: { user: /^(sponsor|student)$/ }
   get "sign_up_sponsor", to: "users#new_sponsor", as: "sign_up_sponsor"
   get "sign_up_student", to: "users#new_student", as: "sign_up_student"
   delete "sign_out", to: "sessions#delete", as: "sessions_delete"
@@ -80,6 +79,9 @@ Rails.application.routes.draw do
     get "domains/new", to: "domains#new", as: "domains_new"
     post "domains/create", to: "domains#create", as: "domains_create"
   end
+
+  match 'active'  => 'sessions#active',  via: :get
+  match 'timeout' => 'sessions#timeout', via: :get
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

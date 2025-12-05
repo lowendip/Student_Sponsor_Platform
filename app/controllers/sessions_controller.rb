@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  auto_session_timeout_actions
+ 
   #This is used to access the main sign in page
   def index
     redirect_to sign_in_path
@@ -39,5 +42,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged out successfully"
   end
-  
 end

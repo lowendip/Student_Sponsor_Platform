@@ -26,6 +26,9 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= auto_session_timeout_js frequency: 240%>
+    <% end %>
     <%= render "layouts/nav_bar" %>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <% flash.each do |type, msg| %>

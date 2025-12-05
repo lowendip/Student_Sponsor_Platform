@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :app_init
   helper_method :current_user
+  auto_session_timeout 1.hour
 
   def app_init
   end

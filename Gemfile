@@ -72,3 +72,5 @@ end
 gem "bcrypt", "~> 3.1"
 
 gem "ransack", "~> 4.4"
+
+gem 'auto-session-timeout'
