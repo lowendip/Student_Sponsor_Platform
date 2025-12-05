@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :contact, presence: {message: "Contact information is missing"}
   validates :password, format: { with: /[^a-zA-Z]/, message: "Password needs at least one non-letter character"}, length: {minimum: 8, message:"Password must be at least 8 characters"}, on: :create
 
+  #Sets the user's email_confirmed value to be true and resets the confirm_token
   def email_activate
     self.email_confirmed = true
     self.confirm_token = nil

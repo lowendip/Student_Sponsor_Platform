@@ -1,6 +1,6 @@
 <%= form_with model: @user, url:users_create_path do |form| %>
   <div>
-    <%= form.label "Organization", class: "form_label" %><br>
+    <%= form.label "Organization (This will be publicly available)", class: "form_label" %><br>
     <%= form.text_field :organization, class: "form_text" %><br>
     <%= form.hidden_field :role, value: 'Sponsor'  %>
     <%= form.label "Name", class: "form_label" %><br>
@@ -16,12 +16,12 @@
     <%= form.text_field :contact, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:contact]} %><br>
     <%= form.label "Password", class: "form_label" %><br>
-    <%= form.text_field :password, class: "form_text" %>
+    <%= form.password_field :password, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password]} %><br>
     <%= form.label "Password Confirmation", class: "form_label" %><br>
-    <%= form.text_field :password_confirmation, class: "form_text" %>
+    <%= form.password_field :password_confirmation, class: "form_text" %>
     <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password_confirmation]} %><br>
-    <%= form.label "Domains of Experience/Interest", class: "form_text" %>
+    <%= form.label "Domains of Experience/Interest (This will be publicly available)", class: "form_text" %>
     <div style="width:40rem">
       <%= form.collection_select :domains, Domain.all, :id, :name, {}, {multiple: true, class: "form-select", id: "collection-select", data: { controller: "choices" }} %>
     </div>

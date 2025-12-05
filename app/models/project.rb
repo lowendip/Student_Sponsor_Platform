@@ -6,14 +6,17 @@ class Project < ApplicationRecord
   validates :long_desc, presence: {message: "Long description is missing"}
   has_many_attached :images, dependent: :delete_all
 
+  #Filters project by whether it belongs to student
   def self.belongs_to_student
     Project.joins(:user).where(user: {role: "Student"})
   end
 
+  #Filters project by whether it belongs to sponsor
   def self.belongs_to_sponsor
     Project.joins(:user).where(user: {role: "Sponsor"})
   end
 
+  #Filters project by whether the user's account is active
   def self.active_projects
     Project.joins(:user).where(user: {status: "Active"})
   end

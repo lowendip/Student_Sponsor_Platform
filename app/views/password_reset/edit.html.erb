@@ -3,10 +3,10 @@
 <%= form_with scope: :password_reset, url: password_reset_update_path, method: :patch do |form| %>
   <%= hidden_field_tag :password_reset_token, params[:password_reset_token] %>
   <%= form.label "Password", class: "form_label" %><br>
-  <%= form.text_field :password, class: "form_text" %><br>
+  <%= form.password_field :password, class: "form_text" %><br>
   <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password]} %><br>
   <%= form.label "Password Confirmation", class: "form_label" %><br>
-  <%= form.text_field :password_confirmation, class: "form_text" %><br>
+  <%= form.password_field :password_confirmation, class: "form_text" %><br>
   <%= render partial: "shared/error_display", locals: {errors: @user.errors.messages[:password_confirmation]} %><br>
   <%= form.submit "Reset password", {class:"submit_button"} %>
 <% end %>

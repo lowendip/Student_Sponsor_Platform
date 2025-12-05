@@ -1,7 +1,9 @@
 class PasswordResetController < ApplicationController
+  #This is the page where the user enters their email in order to update their password (submission runs create)
   def new
   end
 
+  #Finds the user with the given email, generates a token for their password reset, and then mails them a password reset link with that token
   def create
     if @user = User.find_by(email: params[:email])
       token = @user.generate_token_for(:password_reset)
@@ -13,6 +15,8 @@ class PasswordResetController < ApplicationController
     end
   end
 
+  #This is the page that the password reset email links to
+  #It will display an error and redirect the user back to the initial enter an email page if their token is invalid
   def edit
     @user = User.find_by_token_for(:password_reset, params[:password_reset_token])
     if @user.nil?
@@ -21,6 +25,8 @@ class PasswordResetController < ApplicationController
     end
   end
 
+  #Updates the users password based on the edit form
+  #This also requires the password reset token for security reasons
   def update
     @user = User.find_by_token_for(:password_reset, params[:password_reset_token])
     if @user.nil?

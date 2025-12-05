@@ -2,6 +2,7 @@ module Admin
   class UsersController < AdminController
     before_action :set_user, only: [:edit, :update, :destroy, :disable, :reactivate]
     
+    #This index page contains all users ordered by the most recently created users
     def index
       params[:q] = {} if params[:q].blank?
       @q = User.all.order(created_at: :desc).ransack(params[:q])
@@ -34,6 +35,8 @@ module Admin
       end
     end
 
+    #Used to disable a user account
+    #This prevents the user from logging into their account and hides all their projects
     def disable
       @user.update(status: "Disabled")
       if @user.save
@@ -45,6 +48,7 @@ module Admin
       end
     end
 
+    #This is used to reactivate a disabled users account
     def reactivate
       @user.update(status: "Active")
       if @user.save

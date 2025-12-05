@@ -1,7 +1,8 @@
 module Admin
   class DomainsController < AdminController
     before_action :set_domain, only: [:edit, :update, :delete]
-    
+   
+    #This index page contains all domains ordered by the most recently created domains 
     def index
       params[:q] = {} if params[:q].blank?
       @q = Domain.all.order(created_at: :desc).ransack(params[:q])
