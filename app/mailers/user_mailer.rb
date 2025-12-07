@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
-  #For local application:
+  #Main email:
   default from: "sponsorstudentconfirm@gmail.com"
-  #For web application:
+  #Alternative email:
   #default :from => "mailaccess@studentsponsorplatform.me"
   
   def registration_confirmation(user)
