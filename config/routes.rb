@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "sign_in", to: "sessions#new", as: "sign_in"
-  get "sign_up", to: "users#new", as: "sign_up", constraints: { user: /^(sponsor|student)$/ }
-  #get "sessions/create"
+  get "sign_up_sponsor", to: "users#new_sponsor", as: "sign_up_sponsor"
+  get "sign_up_student", to: "users#new_student", as: "sign_up_student"
   delete "sign_out", to: "sessions#delete", as: "sessions_delete"
   resources :sessions
 
@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   get "students", to: "students#index", as: "students"
   get "sponsors", to: "sponsors#index", as: "sponsors"
+  get "password_reset/new", to: "password_reset#new", as: "password_reset_new"
+  post "password_reset/create", to: "password_reset#create", as: "password_reset_create"
+  get "password_reset/edit", to: "password_reset#edit", as: "password_reset_edit"
+  patch "password_reset/update", to: "password_reset#update", as: "password_reset_update"
 
 
   post "users/create", to: "users#create", as: "users_create"
@@ -23,11 +27,13 @@ Rails.application.routes.draw do
 
   namespace :sponsor do
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/edit_profile", to: "dashboard#edit_profile", as: "dashboard_edit_profile"
+    patch "dashboard/edit_profile", to: "dashboard#update_profile", as: "dashboard_update_profile"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"
     get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
     patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
-    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    delete "dashboard/:id/destroy", to: "dashboard#destroy", as: "dashboard_destroy"
     post "dashboard/create", to: "dashboard#create", as: "dashboard_create"
     post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
     post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
@@ -36,11 +42,13 @@ Rails.application.routes.draw do
 
   namespace :student do
     get "dashboard/new", to: "dashboard#new", as: "dashboard_new"
+    get "dashboard/edit_profile", to: "dashboard#edit_profile", as: "dashboard_edit_profile"
+    patch "dashboard/edit_profile", to: "dashboard#update_profile", as: "dashboard_update_profile"
     get "dashboard/:id", to: "dashboard#show", as: "dashboard_show"
     get "dashboard", to: "dashboard#index", as: "dashboard"
     get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
     patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
-    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    delete "dashboard/:id/destroy", to: "dashboard#destroy", as: "dashboard_destroy"
     post "dashboard/create", to: "dashboard#create", as: "dashboard_create"
     post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
     post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
@@ -52,7 +60,7 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index", as: "dashboard"
     get "dashboard/:id/edit", to: "dashboard#edit", as: "dashboard_edit"
     patch "dashboard/:id/update", to: "dashboard#update", as: "dashboard_update"
-    delete "dashboard/:id/delete", to: "dashboard#delete", as: "dashboard_delete"
+    delete "dashboard/:id/destroy", to: "dashboard#destroy", as: "dashboard_destroy"
     post "dashboard/:id/hide", to: "dashboard#hide", as: "dashboard_hide"
     post "dashboard/:id/unhide", to: "dashboard#unhide", as: "dashboard_unhide"
     post "dashboard/:id/renew", to: "dashboard#renew", as: "dashboard_renew"
@@ -60,7 +68,7 @@ Rails.application.routes.draw do
     get "users", to: "users#index", as: "users"
     get "users/:id/edit", to: "users#edit", as: "users_edit"
     patch "users/:id/update", to: "users#update", as: "users_update"
-    delete "users/:id/delete", to: "users#delete", as: "users_delete"
+    delete "users/:id/destroy", to: "users#destroy", as: "users_destroy"
     post "users/:id/disable", to: "users#disable", as: "users_disable"
     post "users/:id/reactivate", to: "users#reactivate", as: "users_reactivate"
 
@@ -71,6 +79,9 @@ Rails.application.routes.draw do
     get "domains/new", to: "domains#new", as: "domains_new"
     post "domains/create", to: "domains#create", as: "domains_create"
   end
+
+  match 'active'  => 'sessions#active',  via: :get
+  match 'timeout' => 'sessions#timeout', via: :get
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

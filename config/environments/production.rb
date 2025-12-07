@@ -22,7 +22,7 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
@@ -50,7 +50,7 @@ Rails.application.configure do
   config.cache_store = :solid_cache_store
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
-  config.active_job.queue_adapter = :solid_queue
+  #config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
+  config.action_mailer.default_url_options = { host: "student-sponsor-platform-7e126577d0e4.herokuapp.com", protocol: "https" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -69,6 +69,17 @@ Rails.application.configure do
   #   authentication: :plain
   # }
 
+  config.action_mailer.smtp_settings = {
+  port: ENV['MAILGUN_SMTP_PORT'],
+  address: ENV['MAILGUN_SMTP_SERVER'],
+  user_name: ENV['MAILGUN_SMTP_LOGIN'],
+  password: ENV['MAILGUN_SMTP_PASSWORD'],
+  authentication:  "plain",
+    enable_starttls: true,
+    open_timeout:    5,
+    read_timeout:    5
+  }
+ 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

@@ -1,7 +1,8 @@
 module Admin
   class DashboardController < AdminController
-    before_action :set_project, only: [:show, :edit, :update, :delete, :hide, :unhide, :renew]
+    before_action :set_project, only: [:show, :edit, :update, :destroy, :hide, :unhide, :renew]
     
+    #This index page contains all projects ordered by the most recently created projects
     def index
       params[:q] = {} if params[:q].blank?
       @q = Project.all.joins(:user).order(created_at: :desc).ransack(params[:q])
@@ -27,16 +28,17 @@ module Admin
       end
     end
 
-    def delete
-      if @project.delete
-        flash[:notice] = "Project Deleted"
+    def destroy
+      if @project.destroy
+        flash[:notice] = "Project Destroyed"
         redirect_to admin_dashboard_path
       else
-        flash[:alert] = "Failed to Delete Project"
-        redirect_to root_path
+        flash[:alert] = "Failed to Destroy Project"
+        redirect_to admin_dashboard_path
       end
     end
 
+    #Makes the project invisible on the public pages
     def hide
       @project.update(status: "Hidden")
       if @project.save
@@ -48,6 +50,7 @@ module Admin
       end
     end
 
+    #Makes the project visible on the public pages
     def unhide
       @project.update(status: "Visible")
       if @project.save
@@ -59,7 +62,10 @@ module Admin
       end
     end
 
+    #Sets the expiration date to two years from now
+    #If the current date is past the expiration date the project will not be visible
     def renew
+      #The project will be set to hidden after renewal if it has alreday expired
       if @project.expiration < DateTime.now
         @project.update(status: "Hidden")
       end

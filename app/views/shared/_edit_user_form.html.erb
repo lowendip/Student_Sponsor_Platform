@@ -1,0 +1,14 @@
+<%= form.label "Name", class: "form_label" %><br>
+<%= form.text_field :name, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: user.errors.messages[:name]} %><br>
+<%= form.label "Username", class: "form_label" %><br>
+<%= form.text_field :username, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: user.errors.messages[:username]} %><br>
+<%= form.label "Contact Information (This will be publicly available)", class: "form_label" %><br>
+<%= form.text_field :contact, class: "form_text" %>
+<%= render partial: "shared/error_display", locals: {errors: user.errors.messages[:contact]} %><br>
+<%= form.label "Domains of Experience/Interest", class: "form_text" %>
+<div style="width:40rem">
+  <%= form.collection_select :domains, Domain.all, :id, :name, {:selected => user.domains.ids}, {multiple: true, class: "form-select", id: "collection-select", data: { controller: "choices" }} %>
+</div>
+<%= form.submit "Update Profile", {class:"submit_button"} %>

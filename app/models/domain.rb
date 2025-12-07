@@ -1,3 +1,4 @@
+#This reperesents the domain search tag used by projects and users
 class Domain < ApplicationRecord
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :users

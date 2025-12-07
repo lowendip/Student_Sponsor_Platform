@@ -1,0 +1,9 @@
+<div class="card" href=<%= sponsor_projects_show_path(project) %> style="width: 33vw; padding:1vw; min-width:33vw;">
+  <h3 class="card-title" style="text-align:center"><%= project.name %></h3>
+  <img class="card-img-top" src="<%=(url_for(project.images.first))%>" style="width:31vw; height:31vw; padding-bottom:5px">
+  <div class="card-body">
+    <p class="card-text"><%= project.short_desc %></p>
+    <!-- Links to show path based on the type of project -->
+    <a href=<% if project.user.role == "Sponsor" %> <%= sponsor_projects_show_path(project) %> <% else %> <%= student_projects_show_path(project) %> <% end %> class="stretched-link" style="display:hidden"></a>
+  </div>
+</div>

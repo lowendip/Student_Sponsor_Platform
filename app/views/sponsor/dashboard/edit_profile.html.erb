@@ -1,0 +1,11 @@
+<!-- This script is used to ensure the choices.js domain tag is loaded upon the page load -->
+<script>
+  document.addEventListener("connect()", function () {
+    const select = document.getElementById("collection-select");
+  });
+</script>
+<%= form_with model: @user, url:sponsor_dashboard_edit_profile_path do |form| %>
+  <div>
+    <%= render partial: "shared/edit_user_form", locals: {user: @user, form: form} %><br>
+  </div>
+<% end %>

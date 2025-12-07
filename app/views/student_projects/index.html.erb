@@ -1,7 +1,9 @@
 <%= search_form_for(@q, url: student_projects_path) do |form| %>
-  <%= form.label :project_name_cont %><br>
+  <%= form.label "Project Name" %><br>
   <%= form.text_field :name_cont %><br>
-  <%= form.label :domain %>
+  <%= form.label "Student Name" %><br>
+  <%= form.text_field :user_name_cont %><br>
+  <%= form.label "Domain (search tag)" %>
   <div style="width:40rem">
     <%= form.collection_select :domains_id_in, @domains, :id, :name, {}, {id: "collection-select", multiple: true, data: { controller: "choices" }} %>
   </div>

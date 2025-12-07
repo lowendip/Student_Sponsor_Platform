@@ -6,5 +6,6 @@
 
 <%= submit_tag "Login" %>
 <% end %>
-<%= link_to "Sign Up As Sponsor", sign_up_path(user: "sponsor"), method: :get, class: "btn btn-primary" %>
-<%= link_to "Sign Up As Student", sign_up_path(user: "student"), method: :get, class: "btn btn-primary" %>
+<%= link_to "Sign Up As Sponsor", sign_up_sponsor_path, method: :get, class: "btn btn-primary" %>
+<%= link_to "Sign Up As Student", sign_up_student_path, method: :get, class: "btn btn-primary" %><br>
+<%= link_to "Forgot password?", password_reset_new_path %>
