@@ -1,3 +1,5 @@
+<!-- This is used to display the carousel with 4 slides on the front page -->
+<!-- Each of the carousel items contains one of the slides and the buttons are used to navigate between them-->
 <div id="carouselCaptions" class="carousel slide" style="height:17em">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -53,13 +55,16 @@
 <br>
 <br>
 <% if current_user %>
+  <!-- This displays the featured new projects if the user is logged in -->
   <h1 style="text-align:center"> New Projects </h1>
   <div style="display:flex; flex-wrap:wrap; padding:0.5vw">
-      <% @projects.each do | project | %>
-        <%= render "shared/project_card", project:project %>
-      <% end %>
+    <!-- Only the 9 most recent projects with images will be displayed here -->
+    <% @projects.each do | project | %>
+      <%= render "shared/project_card", project:project %>
+    <% end %>
   </div>
 <% else %>
+  <!-- This displays a welcome message if the user is not logged in-->
   <div class="card border-secondary border-2" style="max-width: 80vw; margin:auto">
     <div class="card-header" style="font-size:2.5rem; text-align:center">Welcome</div>
     <div class="card-body text-secondary" style="text-align: center">

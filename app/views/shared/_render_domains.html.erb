@@ -1,3 +1,4 @@
+<!-- This takes a list of domains in a list format like this ["A", "B"] and translates it into this format "A, B" -->
 <% @str = "" %>
 <% model.domains.pluck(:name).each do | domain | %>
   <% @str = @str + domain + ", " %>

@@ -3,6 +3,7 @@
   <img class="card-img-top" src="<%=(url_for(project.images.first))%>" style="width:31vw; height:31vw; padding-bottom:5px">
   <div class="card-body">
     <p class="card-text"><%= project.short_desc %></p>
+    <!-- Links to show path based on the type of project -->
     <a href=<% if project.user.role == "Sponsor" %> <%= sponsor_projects_show_path(project) %> <% else %> <%= student_projects_show_path(project) %> <% end %> class="stretched-link" style="display:hidden"></a>
   </div>
 </div>

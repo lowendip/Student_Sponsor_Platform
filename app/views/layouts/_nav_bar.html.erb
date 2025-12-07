@@ -5,6 +5,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<%= root_url %>">Home</a>
         </li>
+        <!-- Displays a dashboard link (or in the case of admin multiple) based on the user's role -->
         <% if current_user && current_user.role == "Sponsor" %>
           <li class="nav-item">
             <a class="nav-link" href="<%= sponsor_dashboard_url %>">Dashboard</a>
@@ -23,6 +24,7 @@
             </ul>
             </li>
           <% end %>
+        <!-- Displays the public projects and sponsors/students pages if the user is logged in -->
         <% if current_user %>
           <li class="nav-item">
             <a class="nav-link" href="<%= sponsor_projects_url %>">Sponsor Projects</a>
@@ -38,6 +40,7 @@
           </li>
         <% end %>
       </ul>
+      <!-- Displays the sign in link if the user is not signed in and otherwise will display a sign out path that will remove their user session id (signing them out) -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <% if current_user %>
