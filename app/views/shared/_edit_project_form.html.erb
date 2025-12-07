@@ -5,7 +5,7 @@
 <%= form.text_field :short_desc, class: "form_text" %>
 <%= render partial: "shared/error_display", locals: {errors: project.errors.messages[:short_desc]} %><br>
 <%= form.label "Long Description", class: "form_label" %><br>
-<%= form.text_field :long_desc, class: "form_text" %>
+<%= form.text_area :long_desc, class: "form-control", style: "width:70rem; height:8rem;" %>
 <%= render partial: "shared/error_display", locals: {errors: project.errors.messages[:long_desc]} %><br>
 <%= form.label "Site Link (Optional)", class: "form_label" %><br>
 <%= form.text_field :url, class: "form_text" %>
