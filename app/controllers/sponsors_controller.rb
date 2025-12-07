@@ -6,7 +6,7 @@ class SponsorsController < ApplicationController
     #Includes all users that are sponsors and not disabled
     def index
       params[:q] = {} if params[:q].blank?
-      @q = User.where(role: "Sponsor", status: "Active").ransack(params[:q])
+      @q = User.where(role: "Sponsor", status: "Active").distinct.ransack(params[:q])
       @users = @q.result
       @q_organization_cont = params[:q][:organization_cont] #Search by organization
       @q_domains_id_in = params[:q][:domains_id_in] #Search by domain search tag

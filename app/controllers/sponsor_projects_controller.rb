@@ -9,7 +9,7 @@ class SponsorProjectsController < ApplicationController
       #Ensures the projects belong to sponsors and are active (the user's account is not disabled)
       project_ids = Project.belongs_to_sponsor.active_projects.pluck(:id)
       #Checks to see if the projects are past the expiration date and if they are supposed to be visible, orders by most recently updated
-      @q = Project.joins(:user).where(id:project_ids).where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).ransack(params[:q])
+      @q = Project.joins(:user).where(id:project_ids).where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).distinct.ransack(params[:q])
       @projects = @q.result
       @q_name_cont = params[:q][:name_cont] #Search by project name
       @q_user_organization_cont = params[:q][:user_organization_cont] #Search by organization name

@@ -9,7 +9,7 @@ class StudentProjectsController < ApplicationController
       #Ensures the projects belong to students and are active (the user's account is not disabled)
       project_ids = Project.belongs_to_student.active_projects
       #Checks to see if the projects are past the expiration date and if they are supposed to be visible, orders by most recently updated
-      @q = Project.where(id:project_ids).where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).ransack(params[:q])
+      @q = Project.where(id:project_ids).where("expiration >= ?", DateTime.now).where(status:"Visible").order(updated_at: :desc).distinct.ransack(params[:q])
       @projects = @q.result
       @q_name_cont = params[:q][:name_cont] #Search by project name
       @q_user_name_cont = params[:q][:user_name_cont] #Search by user's name
