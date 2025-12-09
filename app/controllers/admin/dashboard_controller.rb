@@ -20,11 +20,18 @@ module Admin
 
     def update
       if @project.update(project_params)
+        #Adds the domains to the project (the domains are foreign keys used for searching)
+        params["project"]["domains"].each do |domain|
+          if domain!=""
+            @project.domains << Domain.find(domain.to_i)
+          else
+            @project.domains.clear
+          end
+        end
         flash[:notice] = "Project Updated"
         redirect_to admin_dashboard_path
       else
-        flash[:alert] = "Failed to Update Project"
-        redirect_to root_path
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -90,7 +97,7 @@ module Admin
     end
 
     def project_params
-      params.require(:project).permit(:name, :short_desc, :long_desc, :domains)
+      params.require(:project).permit(:name, :short_desc, :long_desc, :domains, :url,)
     end
   end
 end

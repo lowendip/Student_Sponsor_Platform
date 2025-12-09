@@ -18,10 +18,17 @@ module Admin
     def update
       if @user.update(user_params)
         flash[:notice] = "User Updated"
+        #Adds domains to the user (the domains are foreign keys used for searching) or clears the domains if there are none in params
+        params["user"]["domains"].each do |domain|
+          if domain!=""
+            @user.domains << Domain.find(domain.to_i)
+          else
+            @user.domains.clear
+          end
+        end
         redirect_to admin_users_path
       else
-        flash[:alert] = "Failed to Update User"
-        redirect_to admin_users_path
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -71,7 +78,7 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit(:name, :username, :organization, :status, :role)
+      params.require(:user).permit(:name, :username, :organization, :status, :role, :contact, :domains)
     end
   end
 end
